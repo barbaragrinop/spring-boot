@@ -9,32 +9,34 @@ import java.util.List;
 
 @Service
 public class ContaService {
-    private List<Conta> contas = new ArrayList<>();
+    private static List<Conta> contas = new ArrayList<>();
 
     public ContaService() {
-
+        contaFake();
     }
 
-    public List<Conta> getContas() {
-        return contas;
-    }
-
-    public void setContas(List<Conta> contas) {
-        this.contas = contas;
+    private void contaFake() {
+        Conta conta1 = new Conta(0L);
+        conta1.setTitular("Diego");
+        conta1.setSaldo(1000.0);
+        contas.add(conta1);
     }
 
     public Conta find(Conta conta) {
-        for (Conta c : this.contas) {
+        for (Conta c : contas) {
             if (c.equals(conta)) {
                 return c;
             }
         }
-
         return null;
     }
 
     public Conta find(Long id) {
-        return this.find(new Conta(id));
+        return find(new Conta(id));
     }
 
+    public void create(Conta conta) {
+        conta.setId(conta.generateId());
+        contas.add(conta);
+    }
 }

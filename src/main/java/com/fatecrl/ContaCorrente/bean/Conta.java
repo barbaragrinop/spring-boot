@@ -1,6 +1,7 @@
 package com.fatecrl.ContaCorrente.bean;
 
 import java.io.Serializable;
+import java.util.Objects;
 
 public class Conta {
 
@@ -17,6 +18,10 @@ public class Conta {
     }
 
     public Conta(Long id) {
+        this.id = id;
+    }
+
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -64,5 +69,17 @@ public class Conta {
     public String toString() {
         return "Conta [id=" + id + ", agencia=" + agencia + ", numero=" + numero + ", titular=" + titular + ", saldo="
                 + saldo + "]";
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (obj == null)
+            return false;
+        if (getClass() != obj.getClass())
+            return false;
+        Conta other = (Conta) obj;
+        return Objects.equals(id, other.id);
     }
 }
