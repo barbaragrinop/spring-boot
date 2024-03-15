@@ -6,7 +6,8 @@ import java.util.Objects;
 public class Conta {
 
     private static final long serialVersionUID = -4205156507257923921L;
-    private Long nextId = 1L;
+    private static Long nextId = 1L; // auto incremento static para manter o mesmo valor para todas as instancias
+                                     // para incrementar o id correto
     private Long id;
     private Integer agencia;
     private String numero;

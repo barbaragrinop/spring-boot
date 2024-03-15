@@ -31,6 +31,10 @@ public class ContaService {
         return null;
     }
 
+    public List<Conta> findAll() {
+        return contas;
+    }
+
     public Conta find(Long id) {
         return find(new Conta(id));
     }
@@ -38,5 +42,34 @@ public class ContaService {
     public void create(Conta conta) {
         conta.setId(conta.generateId());
         contas.add(conta);
+    }
+
+    public Boolean update(Conta conta) {
+        Conta _conta = this.find(conta);
+
+        if (conta == null) {
+            return false;
+        }
+
+        // da pra melhorar aqu
+        _conta.setAgencia(conta.getAgencia());
+        _conta.setNumero(conta.getNumero());
+        _conta.setTitular(conta.getTitular());
+        _conta.setSaldo(conta.getSaldo());
+
+        return true;
+    }
+
+    public Boolean delete(Long id) {
+        Conta _conta = this.find(id);
+
+        if (_conta == null) {
+            return false;
+        }
+
+        contas.remove(_conta);
+
+        return true;
+
     }
 }
